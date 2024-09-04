@@ -5,9 +5,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 22px;
+    }
+
+    body {
+      margin: 0;
+      color: white;
+      letter-spacing: 1.5px;
+    }
+
+    main {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      height: 100vh;
+      padding: 0.5rem 1rem;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgb(14, 38, 41);
+    }
+
+    h1 {
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const main = document.querySelector("main");
+      const height = Number(window.getComputedStyle(main).height.split("px")[0]);
+      main.style.maxWidth = (height * 0.625) + "px";
+
+      const canvas = document.querySelector("canvas");
+      canvas.style.width = "90%";
+      const canvasWidth = Number(window.getComputedStyle(canvas).width.split("px")[0]);
+      const canvasHeight = canvasWidth * 1.167;
+      canvas.style.height = canvasHeight + "px";
+      const ctx = canvas.getContext("2d");
+
+      const img = canvas.querySelector("img");
+      function desenharImagem() {
+        ctx.drawImage(this, 590, 140, canvasWidth, canvasHeight, 0, 0, 300, 150);
+      }
+      if (!img.complete) img.onload = desenharImagem;
+      else desenharImagem.bind(img)();
+    })
+  </script>
 </head>
 
 <body>
+  <main>
+    <p style="position: absolute; top: 0.5rem; left: 1rem; margin: 0; font-size: 0.75rem; font-weight: 500;">
+      Ministério do Trabalho e Emprego
+    </p>
+    <canvas>
+      <img style="max-width: 100%; margin: auto;" src="imagens/frente.jpg" alt="escudo da républica" />
+    </canvas>
+    <h1>
+      Carteira de Trabalho
+      <br /> e <br />
+      Previdência Social
+    </h1>
+  </main>
 
 </body>
 
